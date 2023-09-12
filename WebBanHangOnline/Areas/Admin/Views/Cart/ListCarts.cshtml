@@ -1,0 +1,116 @@
+﻿@model IEnumerable<WebBanHangOnline.Models.EF.CartModel>
+@{
+    ViewBag.Title = "Danh sách sản phẩm trong giỏ hàng";
+}
+
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/productcategory" class="nav-link">@ViewBag.Title</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lý danh mục sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng cộng</th>
+                        <th style="width:150px;">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        var i = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr id="trow_@item.ProductID">
+                                <td>@i</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Total)
+                                </td>
+                                <td>
+                                    <a href="/admin/Cart/DeleteCart/@item.ProductID" class="btn btn-sm btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">Không có bản ghi nào!!!</td>
+                        </tr>
+                    }
+
+                    <tr>
+                        <td colspan="2">Số lượng sản phẩm: <span class="font-weight-bold">@ViewBag.CountProduct</span></td>
+                        <td colspan="2">Thành tiền: <span class="font-weight-bold">@ViewBag.Total</span></td>
+                        <td colspan="2">@Html.ActionLink("Đặt hàng", "OrderProduct", "Cart", new { @class = "btn btn-primary" })</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
