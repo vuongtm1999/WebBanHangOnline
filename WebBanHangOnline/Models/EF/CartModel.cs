@@ -12,7 +12,8 @@ namespace WebBanHangOnline.Models.EF
         public string ProductName { get; set; }
         public decimal? UnitPrice { get; set; }
         public int Quantity { get; set; }
-        public decimal? Total { get { return UnitPrice * Quantity; } }
+        public float? Discount { get; set; }
+        public decimal? Total { get { return UnitPrice* Quantity - (decimal?)((float)UnitPrice * Quantity * Discount); } }
         public CartModel(int productID)
         {
             Product p = da.Products.FirstOrDefault(s => s.Id == productID);
@@ -20,6 +21,7 @@ namespace WebBanHangOnline.Models.EF
             this.ProductName = p.Title;
             this.UnitPrice = p.Price;
             this.Quantity = 1;
+            this.Discount = p.Discount;
         }
     }
 }

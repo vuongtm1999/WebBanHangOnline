@@ -185,7 +185,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CartController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CodeDiscountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomersController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
@@ -203,29 +202,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202309121435350_init.cs" />
-    <Compile Include="Migrations\202309121435350_init.Designer.cs">
-      <DependentUpon>202309121435350_init.cs</DependentUpon>
+    <Compile Include="Migrations\202309121859459_init.cs" />
+    <Compile Include="Migrations\202309121859459_init.Designer.cs">
+      <DependentUpon>202309121859459_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202309121509471_update-product-12.09.cs" />
-    <Compile Include="Migrations\202309121509471_update-product-12.09.Designer.cs">
-      <DependentUpon>202309121509471_update-product-12.09.cs</DependentUpon>
+    <Compile Include="Migrations\202309121944107_update-discount-fiedl.cs" />
+    <Compile Include="Migrations\202309121944107_update-discount-fiedl.Designer.cs">
+      <DependentUpon>202309121944107_update-discount-fiedl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202309121512435_updapte-order.cs" />
-    <Compile Include="Migrations\202309121512435_updapte-order.Designer.cs">
-      <DependentUpon>202309121512435_updapte-order.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202309121805460_update-13.09.cs" />
-    <Compile Include="Migrations\202309121805460_update-13.09.Designer.cs">
-      <DependentUpon>202309121805460_update-13.09.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202309121810227_update-Codediscoun-13.09.cs" />
-    <Compile Include="Migrations\202309121810227_update-Codediscoun-13.09.Designer.cs">
-      <DependentUpon>202309121810227_update-Codediscoun-13.09.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202309121817024_update-codeDiscount.cs" />
-    <Compile Include="Migrations\202309121817024_update-codeDiscount.Designer.cs">
-      <DependentUpon>202309121817024_update-codeDiscount.cs</DependentUpon>
+    <Compile Include="Migrations\202309122040261_update-discountModel.cs" />
+    <Compile Include="Migrations\202309122040261_update-discountModel.Designer.cs">
+      <DependentUpon>202309122040261_update-discountModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3331,11 +3318,6 @@
     <Content Include="Areas\Admin\Views\Customers\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Customers\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Customers\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\CodeDiscounts\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CodeDiscounts\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\CodeDiscounts\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\CodeDiscounts\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\CodeDiscounts\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3428,23 +3410,14 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202309121435350_init.resx">
-      <DependentUpon>202309121435350_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202309121859459_init.resx">
+      <DependentUpon>202309121859459_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202309121509471_update-product-12.09.resx">
-      <DependentUpon>202309121509471_update-product-12.09.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202309121944107_update-discount-fiedl.resx">
+      <DependentUpon>202309121944107_update-discount-fiedl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202309121512435_updapte-order.resx">
-      <DependentUpon>202309121512435_updapte-order.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202309121805460_update-13.09.resx">
-      <DependentUpon>202309121805460_update-13.09.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202309121810227_update-Codediscoun-13.09.resx">
-      <DependentUpon>202309121810227_update-Codediscoun-13.09.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202309121817024_update-codeDiscount.resx">
-      <DependentUpon>202309121817024_update-codeDiscount.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202309122040261_update-discountModel.resx">
+      <DependentUpon>202309122040261_update-discountModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

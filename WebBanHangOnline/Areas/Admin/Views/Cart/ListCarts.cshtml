@@ -71,13 +71,13 @@
                                     @Html.DisplayFor(modelItem => item.ProductName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                                    @WebBanHangOnline.Common.Common.FormatNumber(item.UnitPrice, 0)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Quantity)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Total)
+                                    @WebBanHangOnline.Common.Common.FormatNumber(item.Total, 0)
                                 </td>
                                 <td>
                                     <a href="/admin/Cart/DeleteCart/@item.ProductID" class="btn btn-sm btn-danger">Xóa</a>
@@ -95,7 +95,7 @@
 
                     <tr>
                         <td colspan="2">Số lượng sản phẩm: <span class="font-weight-bold">@ViewBag.CountProduct</span></td>
-                        <td colspan="2">Thành tiền: <span class="font-weight-bold">@ViewBag.Total</span></td>
+                        <td colspan="2">Thành tiền: <span class="font-weight-bold">@WebBanHangOnline.Common.Common.FormatNumber(@ViewBag.Total, 0)</span></td>
                         <td colspan="2">@Html.ActionLink("Đặt hàng", "OrderProduct", "Cart", new { @class = "btn btn-primary" })</td>
                     </tr>
                 </tbody>

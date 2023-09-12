@@ -8,7 +8,26 @@ namespace WebBanHangOnline.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Customers",
+                "dbo.tb_CodeDiscount",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        code = c.String(nullable: false, maxLength: 20),
+                        OrderId = c.Int(nullable: false),
+                        CustomerId = c.Int(nullable: false),
+                        isUsed = c.Int(nullable: false),
+                        Discount = c.Decimal(precision: 18, scale: 2),
+                        CreatedBy = c.String(),
+                        CreatedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(nullable: false),
+                        Modifiedby = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.tb_Customer", t => t.CustomerId, cascadeDelete: true)
+                .Index(t => t.CustomerId);
+            
+            CreateTable(
+                "dbo.tb_Customer",
                 c => new
                     {
                         CustomerId = c.Int(nullable: false, identity: true),
@@ -39,7 +58,7 @@ namespace WebBanHangOnline.Migrations
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
+                .ForeignKey("dbo.tb_Customer", t => t.CustomerId, cascadeDelete: true)
                 .Index(t => t.CustomerId);
             
             CreateTable(
@@ -71,7 +90,7 @@ namespace WebBanHangOnline.Migrations
                         Detail = c.String(),
                         Image = c.String(maxLength: 250),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PriceSale = c.Decimal(precision: 18, scale: 2),
+                        Discount = c.Decimal(precision: 18, scale: 2),
                         Quantity = c.Int(nullable: false),
                         ViewCount = c.Int(nullable: false),
                         IsHome = c.Boolean(nullable: false),
@@ -128,22 +147,25 @@ namespace WebBanHangOnline.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.tb_Order", "CustomerId", "dbo.Customers");
+            DropForeignKey("dbo.tb_CodeDiscount", "CustomerId", "dbo.tb_Customer");
             DropForeignKey("dbo.tb_ProductImage", "ProductId", "dbo.tb_Product");
             DropForeignKey("dbo.tb_Product", "ProductCategoryId", "dbo.tb_ProductCategory");
             DropForeignKey("dbo.tb_OrderDetail", "ProductId", "dbo.tb_Product");
             DropForeignKey("dbo.tb_OrderDetail", "OrderId", "dbo.tb_Order");
+            DropForeignKey("dbo.tb_Order", "CustomerId", "dbo.tb_Customer");
             DropIndex("dbo.tb_ProductImage", new[] { "ProductId" });
             DropIndex("dbo.tb_Product", new[] { "ProductCategoryId" });
             DropIndex("dbo.tb_OrderDetail", new[] { "ProductId" });
             DropIndex("dbo.tb_OrderDetail", new[] { "OrderId" });
             DropIndex("dbo.tb_Order", new[] { "CustomerId" });
+            DropIndex("dbo.tb_CodeDiscount", new[] { "CustomerId" });
             DropTable("dbo.tb_ProductImage");
             DropTable("dbo.tb_ProductCategory");
             DropTable("dbo.tb_Product");
             DropTable("dbo.tb_OrderDetail");
             DropTable("dbo.tb_Order");
-            DropTable("dbo.Customers");
+            DropTable("dbo.tb_Customer");
+            DropTable("dbo.tb_CodeDiscount");
         }
     }
 }

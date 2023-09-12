@@ -6,14 +6,14 @@ namespace WebBanHangOnline.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class updapteorder : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class updatediscountfiedl : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updapteorder));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatediscountfiedl));
         
         string IMigrationMetadata.Id
         {
-            get { return "202309121512435_updapte-order"; }
+            get { return "202309121944107_update-discount-fiedl"; }
         }
         
         string IMigrationMetadata.Source
