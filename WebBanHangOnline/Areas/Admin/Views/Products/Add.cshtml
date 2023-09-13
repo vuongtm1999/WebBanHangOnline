@@ -98,14 +98,22 @@
                                         @Html.ValidationMessageFor(x => x.Detail, null, new { @class = "text-danger" })
                                     </div>
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Số lượng</label>
                                                 @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @Value = "1" })
                                                 @Html.ValidationMessageFor(x => x.Quantity, null, new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="demoOriginalPrice">Giá nhập</label>
+                                                <input type="text" name="demoOriginalPrice" value="0" id="demoOriginalPrice" class="form-control auto" data-a-dec="," data-a-sep=".">
+                                                @Html.HiddenFor(x => x.OriginalPrice, new { @class = "", @placeholder = "Giá nhập" })
+                                                @Html.ValidationMessageFor(x => x.OriginalPrice, null, new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Giá</label>
                                                 <input type="text" name="demoPrice" value="0" id="demoPrice" class="form-control auto" data-a-dec="," data-a-sep=".">
@@ -113,10 +121,10 @@
                                                 @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Chỉ số khuyến mãi(ví dụ: 0.1,0.2,0.3,...)</label>
-                                                <input type="text" name="demoPriceSale" id="demoPriceSale" value="0" class="form-control auto">
+                                                <label for="demoDiscount">Chỉ số khuyến mãi(ví dụ: 0.01, 0.02,...)</label>
+                                                <input type="text" name="demoDiscount" id="demoDiscount" value="0" class="form-control auto">
                                                 @Html.HiddenFor(x => x.Discount, new { @class = "form-control", @placeholder = "Khuyến mãi" })
                                                 @Html.ValidationMessageFor(x => x.Discount, null, new { @class = "text-danger" })
                                             </div>
@@ -129,8 +137,6 @@
                                                     @Html.CheckBoxFor(x => x.IsActive, new { @class = "custom-control-input", @id = "customCheckbox2", @checked = "checked" })
                                                     <label for="customCheckbox2" class="custom-control-label">Hiển thị</label>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                         <div class="col-3">
@@ -241,10 +247,15 @@
                 $('#Price').val(demoGet);
                 $('#Price').autoNumeric('set', demoGet);
             });
-            $('#demoPriceSale').bind('blur focusout keypress keyup', function () {
-                var demoGet = $('#demoPriceSale').autoNumeric('get');
-                $('#PriceSale').val(demoGet);
-                $('#PriceSale').autoNumeric('set', demoGet);
+            $('#demoOriginalPrice').bind('blur focusout keypress keyup', function () {
+                var demoGet = $('#demoOriginalPrice').autoNumeric('get');
+                $('#OriginalPrice').val(demoGet);
+                $('#OriginalPrice').autoNumeric('set', demoGet);
+            });
+            $('#demoDiscount').bind('blur focusout keypress keyup', function () {
+                var demoGet = $('#demoDiscount').autoNumeric('get');
+                $('#Discount').val(demoGet);
+                $('#Discount').autoNumeric('set', demoGet);
             });
             CKEDITOR.replace('txtDetail', {
                 customConfig: '/content/ckeditor/config.js',

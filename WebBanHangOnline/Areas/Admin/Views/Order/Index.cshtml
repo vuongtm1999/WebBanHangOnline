@@ -50,7 +50,7 @@
                         var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
-                    <tr>
+                    <tr id="#trow_@item.Id">
                         <td>@i</td>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
@@ -62,6 +62,7 @@
                             <a href="/admin/order/view/@item.Id" class="btn btn-sm btn-success">Xem</a>
                             <a href="#" class="btn btn-sm btn-info btnCapNhat" data-id="@item.Id">Cập nhật</a>
                             <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                            <a href="#" data-id="@item.Id" class="btn btn-sm btn-warning btnAddDiscount">Thêm mã khuyến mãi</a>
                         </td>
                     </tr>
                             i++;
@@ -116,11 +117,32 @@
                 <button type="button" class="btn btn-primary" id="btnLuu">Lưu</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
+
+<div class="modal fade" id="modalDiscount">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cập nhật trạng thái</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="txtOrderId" value="0" />
+                <div class="form-group">
+                    <label>Thêm mã khuyến mãi:</label>
+                    <input id="ddMaKhuyenMai" type="text" value="" />
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="btnLuuDiscount">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script>
@@ -129,6 +151,30 @@
                 var id = $(this).data("id");
                 $('#txtOrderId').val(id);
                 $('#modal-default').modal('show');
+            });
+
+            $('body').on('click', '.btnAddDiscount', function () {
+                var id = $(this).data("id");
+                $('#txtOrderId').val(id);
+                $('#modalDiscount').modal('show');
+            });
+
+            $('body').on('click', '#btnLuuDiscount', function () {
+                var id = $('#txtOrderId').val();
+                var tt = $('#ddMaKhuyenMai').val();
+                $.ajax({
+                    url: '/admin/order/AddDiscount',
+                    type: 'POST',
+                    data: { id: id, codeDiscountText: tt, customerId: 1 },
+                    success: function (res) {
+                        if (res.Success) {
+                            location.reload();
+                        } else {
+                            alert(res.message);
+                            $('#modalDiscount').modal('hide');
+                        }
+                    }
+                });
             });
 
             $('body').on('click', '#btnLuu', function () {
@@ -157,6 +203,7 @@
                         success: function (rs) {
                             if (rs.success) {
                                 $('#trow_' + id).remove();
+                                location.reload();
                             }
                         }
                     });

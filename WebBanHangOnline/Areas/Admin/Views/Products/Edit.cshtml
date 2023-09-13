@@ -59,7 +59,6 @@
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Thông tin chung</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Hình ảnh</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">SEO</a></li>
                                 </ul>
                                 <div class="card-body">
@@ -96,24 +95,32 @@
                                                 @Html.ValidationMessageFor(x => x.Detail, null, new { @class = "text-danger" })
                                             </div>
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-3">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Số lượng</label>
                                                         @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @Value = "1" })
                                                         @Html.ValidationMessageFor(x => x.Quantity, null, new { @class = "text-danger" })
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-3">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Giá</label>
+                                                        <label for="demoOriginalPrice">Giá nhập</label>
+                                                        <input type="text" name="demoOriginalPrice" id="demoOriginalPrice" value="@Model.OriginalPrice" class="form-control auto" data-a-dec="," data-a-sep=".">
+                                                        @Html.HiddenFor(x => x.OriginalPrice, new { @class = "", @placeholder = "Giá nhập" })
+                                                        @Html.ValidationMessageFor(x => x.OriginalPrice, null, new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Giá bán</label>
                                                         <input type="text" name="demoPrice" id="demoPrice" value="@Model.Price" class="form-control auto" data-a-dec="," data-a-sep=".">
                                                         @Html.HiddenFor(x => x.Price, new { @class = "", @placeholder = "Giá" })
                                                         @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-3">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Chỉ số khuyến mãi(ví dụ: 0.1,0.2,0.3,...)</label>
+                                                        <label for="exampleInputEmail1">Chỉ số khuyến mãi(ví dụ: 0.01,0.02,...)</label>
                                                         @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
                                                         @Html.ValidationMessageFor(x => x.Discount, null, new { @class = "text-danger" })
                                                     </div>
@@ -213,6 +220,12 @@
                 var demoGet = $('#demoPrice').autoNumeric('get');
                 $('#Price').val(demoGet);
                 $('#Price').autoNumeric('set', demoGet);
+            });
+
+            $('#demoOriginalPrice').bind('blur focusout keypress keyup', function () {
+                var demoGet = $('#demoOriginalPrice').autoNumeric('get');
+                $('#OriginalPrice').val(demoGet);
+                $('#OriginalPrice').autoNumeric('set', demoGet);
             });
            
             CKEDITOR.replace('txtDetail', {

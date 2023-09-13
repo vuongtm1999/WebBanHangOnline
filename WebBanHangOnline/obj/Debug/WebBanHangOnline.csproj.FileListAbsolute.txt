@@ -117,3 +117,7 @@ C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.
 C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.GenerateResource.cache
 C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.updatediscountfiedl.resources
 C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.updatediscountModel.resources
+C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.AssemblyReference.cache
+C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.updateorderCodeDiscountId.resources
+C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.upateCodeDiscount.resources
+C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.updteproduct.resources

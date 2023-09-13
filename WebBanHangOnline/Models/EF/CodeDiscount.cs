@@ -23,8 +23,8 @@ namespace WebBanHangOnline.Models.EF
         [StringLength(20)]
         [Required]
         public string code { get; set; }
-        public int OrderId { get; set; }
-        public int CustomerId { get; set; }
+        public int? OrderId { get; set; }
+        public int? CustomerId { get; set; }
         public int isActive { get; set; }
 
         public float? Discount { get; set; }

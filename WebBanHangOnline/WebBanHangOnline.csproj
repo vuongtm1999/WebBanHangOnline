@@ -185,12 +185,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CartController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CodeDiscountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomersController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticalController.cs" />
     <Compile Include="Areas\Admin\Data\ToolClass.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -213,6 +215,18 @@
     <Compile Include="Migrations\202309122040261_update-discountModel.cs" />
     <Compile Include="Migrations\202309122040261_update-discountModel.Designer.cs">
       <DependentUpon>202309122040261_update-discountModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309130719250_update-order-CodeDiscountId.cs" />
+    <Compile Include="Migrations\202309130719250_update-order-CodeDiscountId.Designer.cs">
+      <DependentUpon>202309130719250_update-order-CodeDiscountId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309130814554_upate-CodeDiscount.cs" />
+    <Compile Include="Migrations\202309130814554_upate-CodeDiscount.Designer.cs">
+      <DependentUpon>202309130814554_upate-CodeDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309131126425_updte-product.cs" />
+    <Compile Include="Migrations\202309131126425_updte-product.Designer.cs">
+      <DependentUpon>202309131126425_updte-product.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3318,6 +3332,11 @@
     <Content Include="Areas\Admin\Views\Customers\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Customers\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Customers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CodeDiscounts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CodeDiscounts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CodeDiscounts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CodeDiscounts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CodeDiscounts\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3391,6 +3410,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Statistical\" />
     <Folder Include="Content\ckfinder\userfiles\" />
     <Folder Include="Uploads\files\" />
     <Folder Include="Uploads\flash\" />
@@ -3418,6 +3438,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202309122040261_update-discountModel.resx">
       <DependentUpon>202309122040261_update-discountModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309130719250_update-order-CodeDiscountId.resx">
+      <DependentUpon>202309130719250_update-order-CodeDiscountId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309130814554_upate-CodeDiscount.resx">
+      <DependentUpon>202309130814554_upate-CodeDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309131126425_updte-product.resx">
+      <DependentUpon>202309131126425_updte-product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
