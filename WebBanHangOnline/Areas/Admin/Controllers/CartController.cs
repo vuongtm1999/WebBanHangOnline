@@ -79,7 +79,6 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
                     order.CreatedBy = "admin";
 
 
-
                     foreach (var item in GetListCarts())
                     {
                         OrderDetail od = new OrderDetail();
