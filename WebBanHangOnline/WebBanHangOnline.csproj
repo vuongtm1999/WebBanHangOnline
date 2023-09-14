@@ -235,6 +235,7 @@
     <Compile Include="Models\Common\ThongKeTruyCap.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\EF\CartModel.cs" />
+    <Compile Include="Models\EF\CategorySalesViewModel.cs" />
     <Compile Include="Models\EF\CodeDiscount.cs" />
     <Compile Include="Models\EF\Customer.cs" />
     <Compile Include="Models\EF\Order.cs" />
@@ -3482,6 +3483,8 @@
     <Content Include="Content\assets\plugins\moment\moment.min.js.map" />
     <Content Include="Areas\Admin\Views\Statistical\ThongKeTheoThang.cshtml" />
     <Content Include="Areas\Admin\Views\Statistical\ThongKeTheoNam.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistical\ProductSaledByCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistical\ProductSaledBySupplier.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

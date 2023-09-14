@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHangOnline.Models;
+using WebBanHangOnline.Models.EF;
 
 namespace WebBanHangOnline.Areas.Admin.Controllers
 {
@@ -132,5 +133,51 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
             return Json(new { Data = result }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult ProductSaledByCategory()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ProductsSaledByCategory()
+        {
+            var productsSaledByCategory = db.OrderDetails
+                .Include(od => od.Product)
+                .GroupBy(od => od.Product.ProductCategory.Title) // Nhóm theo loại sản phẩm
+                .Select(group => new CategorySalesViewModel
+                {
+                    Category = group.Key,
+                    TotalQuantitySold = group.Sum(od => od.Quantity)
+                }).Select(g=>new {
+                    Category = g.Category,
+                    TotalQuantitySold = g.TotalQuantitySold
+                });
+
+            return Json(new { Data = productsSaledByCategory }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ProductSaledBySupplier()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ProductsSaledBySupplier()
+        {
+            var productsSaledBySupplier = db.OrderDetails
+                .Include(od => od.Product)
+                .GroupBy(od => od.Product.SupplierName) // Nhóm theo loại sản phẩm
+                .Select(group => new
+                {
+                    SupplierName = group.Key,
+                    TotalQuantitySold = group.Sum(od => od.Quantity)
+                }).Select(g => new
+                 {
+                    SupplierName = g.SupplierName,
+                     TotalQuantitySold = g.TotalQuantitySold
+                 });
+
+            return Json(new { Data = productsSaledBySupplier }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -120,3 +120,4 @@ C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.
 C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.updateorderCodeDiscountId.resources
 C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.upateCodeDiscount.resources
 C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.updteproduct.resources
+C:\LTHD\LTCSDL\BTL\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.AssemblyReference.cache

@@ -21,7 +21,7 @@
                     <td>@item.Product.Title</td>
                     <td>@item.Price</td>
                     <td>@item.Quantity</td>
-                    <td>@WebBanHangOnline.Common.Common.FormatNumber((item.Price * item.Quantity), 0)</td>
+                    <td>@WebBanHangOnline.Common.Common.FormatNumber((item.Price * item.Quantity - (decimal?)((float)item.Price * item.Quantity * item.Product.Discount)), 0)</td>
                 </tr>
                 i++;
             }

@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Thống kê số lượng bán theo loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewBag.Title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">@ViewBag.Title</a></li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thống kê</h3>
+        </div>
+        <div class="card-body">
+            <!-- BAR CHART -->
+            <div class="card card-success">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="chart">
+                                <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Loại sản phẩm</td>
+                                        <td>Số lượng bán</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="load_data">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            Footer
+        </div>
+    </div>
+
+</section>
+
+@section scripts {
+    <script src="~/content/clients/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/Content/assets/plugins/moment/moment.min.js"></script>
+    <script>
+        var arrCategory = [];
+        var arrQuantitySold = [];
+        $.ajax({
+            url: '/Statistical/ProductsSaledByCategory',
+            type: 'GET',
+            data: [],
+            success: function (rs) {
+                $.each(rs.Data, function (i, item) {
+                    arrCategory.push(item.Category);
+                    arrQuantitySold.push(item.TotalQuantitySold);
+                })
+
+                var chrt = document.getElementById("barChart").getContext("2d");
+                var chartId = new Chart(chrt, {
+                    type: 'bar',
+                    data: {
+                        labels: arrCategory,
+                        datasets: [{
+                            label: "Thống kê số lượng sản phẩm bán theo loại sản phẩm",
+                            data: arrQuantitySold,
+                            backgroundColor: ['yellow', 'aqua', 'pink', 'lightgreen', 'lightblue', 'gold'],
+                            borderColor: ['red', 'blue', 'fuchsia', 'green', 'navy', 'black'],
+                            borderWidth: 2,
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                    },
+                });
+
+                load_data(rs.Data);
+            }
+        });
+
+        function load_data(data) {
+            var strHtml = "";
+            $.each(data, function (i, item) {
+                strHtml += "<tr>";
+                strHtml += "<td>" + (i + 1) + "</td>";
+                strHtml += "<td>" + item.Category + "</td>";
+                strHtml += "<td>" + item.TotalQuantitySold + "</td>";
+                strHtml += "</tr>";
+            });
+
+            console.log(data);
+            $('#load_data').html(strHtml);
+        }
+    </script>
+}
