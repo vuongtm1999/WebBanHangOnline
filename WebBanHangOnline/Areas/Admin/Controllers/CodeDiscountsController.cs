@@ -18,7 +18,7 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
         // GET: Admin/CodeDiscounts
         public ActionResult Index()
         {
-            return View(db.CodeDiscounts.ToList());
+            return View(db.CodeDiscounts.OrderByDescending(x => x.Id).ToList());
         }
 
         // GET: Admin/CodeDiscounts/Details/5
@@ -41,9 +41,9 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
         {
             // Tạo SelectList
             var statusList = new SelectList(new[]
-            {
-                new SelectListItem { Value = "1", Text = "Hiển thị" },
-                new SelectListItem { Value = "0", Text = "Không hiển thị" }
+           {
+                new SelectListItem { Value = "1", Text = "Còn sử dụng" },
+                new SelectListItem { Value = "0", Text = "Hết hạn" }
             }, "Value", "Text");
 
             // Gán SelectList vào ViewBag hoặc ViewModel
@@ -133,6 +133,17 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CodeDiscount codeDiscount = db.CodeDiscounts.Find(id);
+            List<Order> listOrder = db.Orders.Where(x => x.CodeDiscountId == id).ToList();
+            if (listOrder.Any())
+            {
+                foreach (var order in listOrder)
+                {
+                    order.CodeDiscountId = null;
+                }
+
+                db.SaveChanges();
+            }
+
             db.CodeDiscounts.Remove(codeDiscount);
             db.SaveChanges();
             return RedirectToAction("Index");

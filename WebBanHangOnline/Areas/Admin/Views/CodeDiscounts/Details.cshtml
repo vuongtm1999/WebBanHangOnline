@@ -5,87 +5,106 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/products" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/codediscounts" class="nav-link">Mã khuyến mãi</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Thêm mới</a>
+        </li>
+    </ul>
+}
+
+<section class="content">
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin thêm Mã khuyến mãi</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Details", "CodeDiscounts", FormMethod.Post, new { }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mã khuyến mãi: </label>
+                        @Html.DisplayFor(model => model.code)
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Trạng thái: </label>
+                        @Html.DisplayFor(model => model.isActive)
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Phần trăm giảm: </label>
+                        @Html.DisplayFor(model => model.Discount)
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Người tạo mã khuyến mãi: </label>
+                        @Html.DisplayFor(model => model.CreatedBy)
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ngày tạo mã khuyến mãi: </label>
+                        @Html.DisplayFor(model => model.CreatedDate)
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Người thay đổi mã khuyến mãi: </label>
+                        @Html.DisplayFor(model => model.Modifiedby)
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ngày thay đổi: </label>
+                        @Html.DisplayFor(model => model.ModifiedDate)
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @*<button type="submit" class="btn btn-primary">Lưu</button>*@
+                        <a href="/admin/codediscounts" class="btn btn-danger">Quay lại</a>
+                    </div>
+                </div>
+
+                }
+
+            </div>
+        </div>
+
+        <div class="card-footer">
+
+        </div>
+    </div>
+
+
+</section>
+
+@section  scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+
+    </script>
+}
 
 <div>
-    <h4>CodeDiscount</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrderId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CustomerId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CustomerId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modifiedby)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modifiedby)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

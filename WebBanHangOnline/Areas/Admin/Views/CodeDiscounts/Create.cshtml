@@ -1,115 +1,121 @@
 ﻿@model WebBanHangOnline.Models.EF.CodeDiscount
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Mã khuyến mãi ";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+@section naviheader{
+    @*Left navbar links*@
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/products" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/codediscounts" class="nav-link">Mã khuyến mãi</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Thêm mới</a>
+        </li>
+    </ul>
+}
 
-    <div class="form-horizontal">
-        <h4>CodeDiscount</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+
+@*Content Header (Page header)*@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới Mã khuyến mãi</h1>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OrderId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OrderId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.isActive, ViewBag.StatusList as SelectList, "-- Chọn trạng thái --")
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Mã khuyến mãi</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
             </div>
         </div>
     </div>
-}
+</section>
 
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(x => x.CreatedDate)
-        @Html.HiddenFor(x => x.ModifiedDate)
-        @Html.HiddenFor(x => x.CreatedBy)
-        @Html.HiddenFor(x => x.Modifiedby)
-        @Html.HiddenFor(x => x.OrderId)
-        @Html.HiddenFor(x => x.CustomerId)
+<section class="content">
 
-        <div class="form-horizontal">
-            <h4>CodeDiscount</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin thêm Mã khuyến mãi</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Create", "CodeDiscounts", FormMethod.Post, new { }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mã khuyến mãi</label>
+                        @Html.TextBoxFor(x => x.code, new { @class = "form-control", @placeholder = "Mã khuyến mãi..." })
+                        @Html.ValidationMessageFor(x => x.code, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Trạng thái</label>
+                        @Html.DropDownListFor(x => x.isActive, ViewBag.statusList as SelectList, "-Chọn trạng thái-", new { @class = "form-control", @placeholder = "Mã mã phẩm" })
+                        @Html.ValidationMessageFor(x => x.isActive, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Phần trăm giảm</label>
+                        @Html.TextBoxFor(x => x.Discount, new { @class = "form-control", @placeholder = "Phần trăm khuyến mãi...." })
+                        @Html.ValidationMessageFor(x => x.Discount, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Người tạo mã khuyến mãi</label>
+                        @Html.TextBoxFor(x => x.CreatedBy, new { @class = "form-control", @placeholder = "Người tạo mã khuyến mãi..." })
+                        @Html.ValidationMessageFor(x => x.CreatedBy, null, new { @class = "text-danger" })
+                    </div>
+                    
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <a href="/admin/codediscounts" class="btn btn-danger">Quay lại</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.isActive, ViewBag.StatusList as SelectList, "-- Chọn trạng thái --")
-                    @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                }
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
             </div>
         </div>
-    }*@
 
+        <div class="card-footer">
+
+        </div>
+    </div>
+    
+
+</section>
+
+@section  scripts{
+    <script>
+          $(document).ready(function () {
+              CKEDITOR.replace('txtDetail', {
+                  customConfig: '/content/ckeditor/config.js',
+                  extraAllowedContent: 'span',
+              });
+          });
+          function BrowseServer(field) {
+              var finder = new CKFinder();
+              finder.selectActionFunction = function (fileUrl) {
+                  document.getElementById(field).value = fileUrl;
+              };
+              finder.popup();
+          }
+
+    </script>
+}
+ 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

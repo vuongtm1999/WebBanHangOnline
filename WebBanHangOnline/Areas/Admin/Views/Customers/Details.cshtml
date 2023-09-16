@@ -1,58 +1,97 @@
 ﻿@model WebBanHangOnline.Models.EF.Customer
 
 @{
+    ViewBag.Title = "Chi tiết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>Customer</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/products" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/customers" class="nav-link">Khách hàng</a>
+        </li>
+        
+    </ul>
+}
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+<section class="content">
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title Thông tin Khách hàng</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Details", "Customers", FormMethod.Post, new { }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên khách hàng: </label>
+                            @Html.DisplayFor(model => model.Name)
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Số điện thoại: </label>
+                            @Html.DisplayFor(model => model.Phone)
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Đại chỉ: </label>
+                            @Html.DisplayFor(model => model.Address)
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email: </label>
+                            @Html.DisplayFor(model => model.Email)
+                        </div>
+                        
 
-            <dd>
-                @Html.DisplayFor(model => model.Phone)
-            </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Address)
-            </dd>
+                        <div class="form-group">
+                            @*<button type="submit" class="btn btn-primary">Lưu</button>*@
+                            <a href="/admin/customers" class="btn btn-danger">Quay lại</a>
+                        </div>
+                    </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
+                }
 
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
+            </div>
+        </div>
 
-        </dl>
+        <div class="card-footer">
+
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+
+
+</section>
+
+@section  scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+
+    </script>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
