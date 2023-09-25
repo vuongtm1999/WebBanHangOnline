@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHangOnline.Models;
@@ -47,14 +48,16 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,Name,Phone,Address,Email")] Customer customer)
+        public ActionResult Create(Customer customer)
         {
+
             if (ModelState.IsValid)
             {
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                 return RedirectToAction("Index");
             }
+
 
             return View(customer);
         }

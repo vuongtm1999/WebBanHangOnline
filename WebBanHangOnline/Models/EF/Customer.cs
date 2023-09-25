@@ -18,6 +18,8 @@ namespace WebBanHangOnline.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int CustomerId { get; set; }
+        [Required]
+        [StringLength(250)]
         public string  Name { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
